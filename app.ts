@@ -1,26 +1,23 @@
-import express, {
-   Application,
-   NextFunction,
-   Request,
-   Response
-} from 'express'
+import express, { Application, NextFunction, Request, Response } from 'express'
 import mongoose from 'mongoose'
 
 import landingPageRoutes from './routes/landingPage'
-import { mongodbURI } from './utils/constants'
+import featureSectionRoutes from './routes/featureSection'
+import { MONGODB_KEY } from './keys'
 
 
 const app: Application = express()
-app.use((req:Request, res:Response, next:NextFunction) => {
-   res.append('Access-Control-Allow-Origin', ['*']);
-   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-   res.append('Access-Control-Allow-Headers', 'Content-Type');
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.append('Access-Control-Allow-Origin', [ '*' ])
+  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+  res.append('Access-Control-Allow-Headers', 'Content-Type')
 
-   next();
-});
-app.use('/landing', landingPageRoutes)
+  next()
+})
+app.use(landingPageRoutes)
+app.use(featureSectionRoutes)
 
-mongoose.connect(mongodbURI)
-        .then(() => app.listen(3001))
-        .then(() => console.log('Connected'))
-        .catch(err => console.log(err))
+mongoose.connect(MONGODB_KEY)
+  .then(() => app.listen(3001))
+  .then(() => console.log('Connected'))
+  .catch(err => console.log(err))

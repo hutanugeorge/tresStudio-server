@@ -1,14 +1,17 @@
-import { Schema, model } from 'mongoose'
+import { model, Schema } from 'mongoose'
 
-const landingPageSchema = new Schema({
-       landingPhrase: {
-          type: String,
-          required: true
-       },
-      landingButtonPhrase: {
-          type: String,
-         required: true
-      }
-    })
+import ILandingInfo from '../shared/interfaces/landingInfo'
 
-export default model('LandingPage',  landingPageSchema)
+
+const landingPageSchema: Schema = new Schema({
+  landingPhrase: {
+    type: String,
+    required: true
+  },
+  landingButtonPhrase: {
+    type: String,
+    required: true
+  }
+})
+
+export default model<ILandingInfo>('LandingPage', landingPageSchema)

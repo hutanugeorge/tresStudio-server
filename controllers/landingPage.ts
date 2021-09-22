@@ -1,19 +1,13 @@
 import { NextFunction, Request, Response } from 'express'
 
 import LandingPage from '../models/landingPage'
+import ILandingInfo from '../shared/interfaces/landingInfo'
 
-export const getPhrase = async (req: Request, res: Response, next: NextFunction) => {
-   const landingPageInfo = await LandingPage.findOne().select('landingPhrase')
-   res.status(200)
-      .json({
-               message: 'Landing page phrase fetched successfully',
-               landingInfo: landingPageInfo
-            })
-}
 
-export const postPhrase = async (req: Request, res: Response, next: NextFunction) => {
-   const updatedLandingPageInfo = { landingPhrase: 'Hello11' }
-   await LandingPage.findOneAndUpdate({}, updatedLandingPageInfo)
-   res.status(200)
-            .json({ updatedLandingPageInfo })
+type getPhrase = (req: Request, res: Response, next: NextFunction) => void
+
+export const getPhrase: getPhrase = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  const landingInfo: ILandingInfo[] = await LandingPage.find()
+  res.status(200)
+    .json({ landingInfo: landingInfo[ 0 ] })
 }

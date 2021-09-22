@@ -1,12 +1,12 @@
 import { Router } from 'express'
 
-import {getPhrase, postPhrase} from '../controllers/landingPage'
-import {landingPageRoutes} from '../utils/constants'
+import { getPhrase } from '../controllers/landingPage'
+import { landingPageRoutes } from '../utils/constants'
 
 const router: Router = Router()
+const { getPostLandingInfo } = landingPageRoutes
 
-router.get(landingPageRoutes.getPostPhrase, getPhrase)
-router.post(landingPageRoutes.getPostPhrase, postPhrase)
+router.get(getPostLandingInfo, getPhrase)
 
 
 export default router
