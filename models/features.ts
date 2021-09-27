@@ -1,9 +1,9 @@
 import { model, Schema } from 'mongoose'
 
-import IFeatureCard from '../shared/interfaces/featureCard'
+import { IFeature } from '../shared/interfaces/presentationPage'
 
 
-const featureCardSchema: Schema = new Schema({
+const featureSchema: Schema = new Schema({
   image: {
     type: Schema.Types.String,
     required: true
@@ -18,4 +18,4 @@ const featureCardSchema: Schema = new Schema({
   }
 })
 
-export default model<IFeatureCard>('FeatureCard', featureCardSchema)
+export default model<IFeature>('Feature', featureSchema)

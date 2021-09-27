@@ -1,8 +1,7 @@
 import express, { Application, NextFunction, Request, Response } from 'express'
 import mongoose from 'mongoose'
 
-import landingPageRoutes from './routes/landingPage'
-import featureSectionRoutes from './routes/featureSection'
+import presentationPage from './routes/presentationPage'
 import { MONGODB_KEY } from './keys'
 
 
@@ -14,8 +13,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
   next()
 })
-app.use(landingPageRoutes)
-app.use(featureSectionRoutes)
+app.use(presentationPage)
 
 mongoose.connect(MONGODB_KEY)
   .then(() => app.listen(3001))

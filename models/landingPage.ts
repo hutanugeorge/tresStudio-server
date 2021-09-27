@@ -1,15 +1,15 @@
 import { model, Schema } from 'mongoose'
 
-import ILandingInfo from '../shared/interfaces/landingInfo'
+import { ILandingInfo } from '../shared/interfaces/presentationPage'
 
 
 const landingPageSchema: Schema = new Schema({
   landingPhrase: {
-    type: String,
+    type: Schema.Types.String,
     required: true
   },
   landingButtonPhrase: {
-    type: String,
+    type: Schema.Types.String,
     required: true
   }
 })

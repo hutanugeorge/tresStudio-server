@@ -3,5 +3,9 @@ export const landingPageRoutes = {
 }
 
 export const featureSectionRoutes = {
-  getPostFeatureInfo: '/features'
+  getPostFeatures: '/features'
+}
+
+export const reviewSectionRoutes = {
+  getPostReviews: '/reviews'
 }
