@@ -9,3 +9,7 @@ export const featureSectionRoutes = {
 export const reviewSectionRoutes = {
   getPostReviews: '/reviews'
 }
+
+export const userDashboardRoutes = {
+  getPostPromotions: '/promotions'
+}
