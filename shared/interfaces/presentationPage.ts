@@ -16,10 +16,3 @@ export interface IReview extends Document {
   fullName: string
   review: string
 }
-
-export interface IPromotion extends Document {
-  title: string
-  saleType: string
-  amount: number
-  description: string
-}

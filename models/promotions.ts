@@ -1,23 +1,23 @@
-import {Schema, model} from 'mongoose'
+import { Schema, model } from 'mongoose'
 
-import { IPromotion } from "../shared/interfaces/presentationPage";
+import { IPromotion } from "../shared/interfaces/userDashboard";
 
 
-const promotionSchema: Schema = new Schema ({
+const promotionSchema: Schema = new Schema({
    title: {
-      type: Schema.Types.String,
+      type: String,
       required: true
    },
    saleType: {
-      type: Schema.Types.String,
+      type: String,
       required: true
    },
    amount: {
-      type: Schema.Types.Number,
+      type: Number,
       required: true
    },
    description: {
-      type: Schema.Types.String,
+      type: String,
       required: true
    }
 })

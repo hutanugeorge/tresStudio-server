@@ -11,5 +11,7 @@ export const reviewSectionRoutes = {
 }
 
 export const userDashboardRoutes = {
-  getPostPromotions: '/promotions'
+  getPostPromotions: '/promotions',
+  getPostRewards: '/rewards',
+  getPostAppointments: '/appointments',
 }

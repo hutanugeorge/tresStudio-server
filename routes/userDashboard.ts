@@ -1,12 +1,14 @@
 import { Router } from 'express'
 
-import { getPromotions } from "../controllers/userDashboard";
+import { getAppointments, getPromotions, getRewards } from "../controllers/userDashboard";
 import { userDashboardRoutes } from "../utils/constants"
 
 
-const { getPostPromotions } = userDashboardRoutes
+const { getPostPromotions, getPostRewards, getPostAppointments } = userDashboardRoutes
 const router: Router = Router()
 
 router.get(getPostPromotions, getPromotions)
+router.get(getPostRewards, getRewards)
+router.get(getPostAppointments, getAppointments)
 
 export default router
