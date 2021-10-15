@@ -1,23 +1,32 @@
 import express, { Application, NextFunction, Request, Response } from 'express'
 
 import mongoose from 'mongoose'
+import bodyParser from "body-parser"
 
 import presentationPage from './routes/presentationPage'
-import userDashboard from "./routes/userDashboard";
+import userDashboard from './routes/userDashboard'
+import authentication from './routes/authentication'
 import { MONGODB_KEY } from './keys'
+import { CustomError } from "./shared/interfaces/customError"
 
 
 const app: Application = express()
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use((req: Request, res: Response, next: NextFunction) => {
-  res.append('Access-Control-Allow-Origin', [ '*' ])
-  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-  res.append('Access-Control-Allow-Headers', 'Content-Type')
-
+  res.header('Access-Control-Allow-Origin', [ '*' ])
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+  res.header("Access-Control-Allow-Headers","Authorization")
+  res.header("Access-Control-Allow-Headers","*")
   next()
 })
 app.use(presentationPage)
 app.use(userDashboard)
+app.use(authentication)
 
+app.use((err: CustomError, req: Request, res: Response, next: NextFunction)  => {
+  res.status(Number(err.statusCode)).json({message: err.message})
+})
 mongoose.connect(MONGODB_KEY)
   .then(() => app.listen(3001))
   .then(() => console.log('Connected'))
