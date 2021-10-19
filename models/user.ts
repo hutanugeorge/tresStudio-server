@@ -23,6 +23,14 @@ const userSchema = new Schema({
    role: {
       type: String,
       required: true
+   },
+   rewardsPoints: {
+      type: Number,
+      required: true
+   },
+   promotionCode: {
+      type: String,
+      required: true
    }
 })
 

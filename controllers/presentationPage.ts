@@ -24,3 +24,8 @@ export const getReviews: Controller = async (req: Request, res: Response, next: 
    res.status(200)
       .json({ reviews })
 }
+
+export const postAppointment: Controller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+   const {} = req.body
+
+}

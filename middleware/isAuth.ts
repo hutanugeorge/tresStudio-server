@@ -1,15 +1,12 @@
-import { NextFunction, Request, Response } from "express"
+import { NextFunction, Response } from "express"
 import jwt from 'jsonwebtoken'
 
 import { JWTKEY } from "../keys"
 import Controller from "../shared/controllerType"
+import { IUserRequest } from "../shared/interfaces/userDashboard"
 import catchError from "../utils/catchError"
 import getCustomError from "../utils/getCustomError"
 
-
-interface IUserRequest extends Request {
-   userId?: string
-}
 
 const isAuth: Controller = (req: IUserRequest, res: Response, next: NextFunction): void => {
    try {

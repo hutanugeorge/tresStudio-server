@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from "express"
 
-import User from '../models/User'
+import User from '../models/user'
 import Controller from "../shared/controllerType"
 import catchError from "../utils/catchError"
 import { bcryptComparePasswords, bcryptGeneratePassword } from "../utils/bcryptPasswordsHandelers"
@@ -19,7 +19,7 @@ export const postLogin: Controller = async (req: Request, res: Response, next: N
       if (!await bcryptComparePasswords(password, user.password))
          throw getCustomError(Errors.wrongPassword, 401)
       const token = generateJWT(user._id.toString(), JWTKEY, '1h')
-      res.status(200).json({ token, name: user.firstName, userId: user._id.toString() })
+      res.status(200).json({ token, firstName: user.firstName, userId: user._id.toString() })
    } catch (err: any) {
       catchError(err, next)
    }
@@ -32,8 +32,22 @@ export const postSignUp: Controller = async (req: Request, res: Response, next: 
       if (existentUser)
          throw getCustomError(Errors.emailExists, 405)
       const hashedPassword = await bcryptGeneratePassword(password)
+      let promotionCode = `${firstName}_${lastName}`
+      let user = await User.findOne({ promotionCode })
+      while (user) {
+         promotionCode = promotionCode + String(Math.floor(Math.random() * 100))
+         user = await User.findOne({ promotionCode })
+      }
       const userCreated = await new User(
-         { email, firstName, lastName, password: hashedPassword, role: UserRoles.customer }).save()
+         {
+            email,
+            firstName,
+            lastName,
+            password: hashedPassword,
+            role: UserRoles.customer,
+            rewardsPoints: 0,
+            promotionCode
+         }).save()
       res.status(200).json({ message: SuccessMessages.signup, userId: userCreated._id })
    } catch (err: any) {
       catchError(err, next)

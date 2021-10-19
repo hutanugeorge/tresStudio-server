@@ -19,6 +19,14 @@ const appointmentSchema = new Schema({
       type: String,
       required: true
    },
+   userId: {
+      type: Schema.Types.ObjectId,
+      required: false
+   },
+   userName: {
+      type: String,
+      required: false
+   }
 })
 
 export default model<IAppointment>("Appointment", appointmentSchema)

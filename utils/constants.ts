@@ -11,9 +11,15 @@ export enum reviewSectionRoutes {
 }
 
 export enum userDashboardRoutes {
-   getPostPromotions = '/promotions',
-   getPostRewards = '/rewards',
-   getPostAppointments = '/appointments',
+   getPostPromotionsRoute = '/promotions',
+   getPostRewardsRoute = '/rewards',
+   getPostAppointmentsRoute = '/appointments',
+   getPostUserInfoRoute = '/user',
+   getEmployeesRoute = '/employees'
+}
+
+export enum adminDashboardRoutes {
+   postEmployee = '/adminDashboard/employee'
 }
 
 export enum login {
@@ -28,7 +34,8 @@ export enum Errors {
 }
 
 export enum SuccessMessages {
-   signup = 'User Created'
+   signup = 'User Created',
+   fetchEmployees = 'Employees fetched'
 }
 
 export enum UserRoles {
