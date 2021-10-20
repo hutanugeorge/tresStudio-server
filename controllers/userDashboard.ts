@@ -8,10 +8,10 @@ import Controller from "../shared/controllerType"
 import { IAppointment, IPromotion, IReward, IUserRequest } from "../shared/interfaces/userDashboard"
 
 
-export const getUserInfo: Controller = async (req: IUserRequest, res: Response, next:NextFunction): Promise<void> => {
-   const userInfo = await User.find({_id: req.userId}).select('firstName rewardsPoints promotionCode')
+export const getUserInfo: Controller = async (req: IUserRequest, res: Response, next: NextFunction): Promise<void> => {
+   const userInfo = await User.find({ _id: req.userId }).select('firstName rewardsPoints promotionCode')
    res.status(200)
-      .json({userInfo})
+      .json({ userInfo })
 }
 
 export const getPromotions: Controller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

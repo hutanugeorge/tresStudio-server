@@ -24,11 +24,4 @@ export const postSignup: Controller = async (req: Request, res: Response, next: 
    }
 }
 
-export const getEmployees: Controller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-   try {
-      const employees = await Employee.find().select('firstName lastName jobTitle appointments unavailability field')
-      res.status(200).json({ message: SuccessMessages.fetchEmployees, employees})
-   } catch (err: any) {
-      catchError(err, next)
-   }
-}
+

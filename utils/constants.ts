@@ -1,13 +1,9 @@
-export enum landingPageRoutes {
-   getPostLandingInfo = '/landing'
-}
 
-export enum featureSectionRoutes {
-   getPostFeatures = '/features'
-}
-
-export enum reviewSectionRoutes {
-   getPostReviews = '/reviews'
+export enum presentationPageRoutes {
+   getPostReviews = '/reviews',
+   getPostFeatures = '/features',
+   getPostLandingInfo = '/landing',
+   getEmployeesRoute = '/employees',
 }
 
 export enum userDashboardRoutes {
@@ -15,7 +11,6 @@ export enum userDashboardRoutes {
    getPostRewardsRoute = '/rewards',
    getPostAppointmentsRoute = '/appointments',
    getPostUserInfoRoute = '/user',
-   getEmployeesRoute = '/employees'
 }
 
 export enum adminDashboardRoutes {
@@ -30,12 +25,15 @@ export enum login {
 export enum Errors {
    noEmailFound = 'A user with this email couldn\'t be found',
    wrongPassword = 'Wrong password',
-   emailExists = 'This email already exists'
+   emailExists = 'This email already exists',
+   wrongDate = 'Wrong date',
+   employeeDoesntExist = 'Employee doesn\'t exist'
 }
 
 export enum SuccessMessages {
    signup = 'User Created',
-   fetchEmployees = 'Employees fetched'
+   fetchEmployees = 'Employees fetched',
+   appointmentCreated = 'your appointment has been created'
 }
 
 export enum UserRoles {

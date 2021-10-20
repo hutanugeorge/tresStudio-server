@@ -1,4 +1,4 @@
-import { IAppointment } from "./userDashboard"
+import { IAppointment2 } from "./userDashboard"
 
 
 export interface IEmployee extends Document {
@@ -11,7 +11,7 @@ export interface IEmployee extends Document {
    role: string
    jobTitle: string
    unavailability?: IUnavailabilityPeriod[]
-   appointments?: Pick<IAppointment, 'serviceTitle' | 'date'>[]
+   appointments?: Pick<IAppointment2, 'serviceTitle' | 'date' | 'hour'>[]
 }
 
 interface IUnavailabilityPeriod {
