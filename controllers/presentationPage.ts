@@ -11,7 +11,7 @@ import { IFeature, ILandingInfo, IReview } from '../shared/interfaces/presentati
 import Controller from "../shared/controllerType";
 import { IUserRequest } from "../shared/interfaces/userDashboard"
 import catchError from "../utils/catchError"
-import checkAndUpdateEmployeeAppointments from "../utils/checkAndUpdateEmployeeAppointments"
+import { checkEmployeeAppointments, updateEmployeeAppointments } from "../utils/checkEmployeeAppointments"
 import { SuccessMessages } from "../utils/constants"
 import getUserId from "../utils/getUserId"
 
@@ -47,11 +47,12 @@ export const postAppointment: Controller = async (req: IUserRequest, res: Respon
    const { firstName, lastName, email, phone, message, mainService, subService, employee, hour, day } = req.body
    try {
       const date = dayjs(new Date().setDate(day)).format('MM/DD/YYYY')
-      await checkAndUpdateEmployeeAppointments(date, hour, employee, mainService)
+      await checkEmployeeAppointments(date, hour, employee)
       const userId = getUserId(req)
       await new Appointment({
          firstName, lastName, email, phone, message, serviceTitle: mainService, subService, employee, hour, date, status: 'future', userId
       }).save()
+      await updateEmployeeAppointments(date, hour, employee, mainService)
       res.status(200).json({message: SuccessMessages.appointmentCreated, userFirstName: firstName})
    } catch (err: any) {
       catchError(err, next)

@@ -5,7 +5,7 @@ import { Errors } from "./constants"
 import getCustomError from "./getCustomError"
 
 
-const checkAndUpdateEmployeeAppointments = async (date: string, hour: string, employeeId: string, serviceTitle: string) => {
+export const checkEmployeeAppointments = async (date: string, hour: string, employeeId: string) => {
    const fetchedEmployee: IEmployee | null = await Employee.findOne({ _id: employeeId })
    if (fetchedEmployee) {
       fetchedEmployee.appointments?.forEach((appointment: IEmployeeAppointment) => {
@@ -14,12 +14,13 @@ const checkAndUpdateEmployeeAppointments = async (date: string, hour: string, em
       })
    } else
       throw getCustomError(Errors.employeeDoesntExist, 404)
+
+}
+
+export const updateEmployeeAppointments = async (date: string, hour: string, employeeId: string, serviceTitle: string) => {
    await Employee.findOneAndUpdate({ _id: employeeId }, {
       "$push": {
          "appointments": { date, hour, serviceTitle }
       }
    })
-
 }
-
-export default checkAndUpdateEmployeeAppointments
