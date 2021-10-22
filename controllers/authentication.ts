@@ -18,7 +18,7 @@ export const postLogin: Controller = async (req: Request, res: Response, next: N
          throw getCustomError(Errors.noEmailFound, 401)
       if (!await bcryptComparePasswords(password, user.password))
          throw getCustomError(Errors.wrongPassword, 401)
-      const token = generateJWT(user._id.toString(), JWTKEY, '1h')
+      const token = generateJWT({ userId: user._id.toString(), email }, JWTKEY, '1h')
       res.status(200).json({ token, firstName: user.firstName, userId: user._id.toString() })
    } catch (err: any) {
       catchError(err, next)

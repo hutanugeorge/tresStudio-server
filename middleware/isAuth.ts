@@ -17,6 +17,7 @@ const isAuth: Controller = (req: IUserRequest, res: Response, next: NextFunction
       let decodedToken: any
       decodedToken = jwt.verify(token, JWTKEY)
       req.userId = decodedToken.userId
+      req.userEmail = decodedToken.email
       next()
    } catch (error: any) {
       catchError(error, next)

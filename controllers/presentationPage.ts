@@ -37,23 +37,23 @@ export const getReviews: Controller = async (req: Request, res: Response, next: 
 export const getEmployees: Controller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
    try {
       const employees: IEmployee[] = await Employee.find().select('firstName lastName jobTitle appointments unavailability field')
-      res.status(200).json({ message: SuccessMessages.fetchEmployees, employees })
+      res.status(200)
+         .json({ message: SuccessMessages.fetchEmployees, employees })
    } catch (err: any) {
       catchError(err, next)
    }
 }
 
 export const postAppointment: Controller = async (req: IUserRequest, res: Response, next: NextFunction): Promise<void> => {
-   const { firstName, lastName, email, phone, message, mainService, subService, employee, hour, day } = req.body
+   const { firstName, mainService, employee, hour, day, } = req.body
    try {
       const date = dayjs(new Date().setDate(day)).format('MM/DD/YYYY')
       await checkEmployeeAppointments(date, hour, employee)
       const userId = getUserId(req)
-      await new Appointment({
-         firstName, lastName, email, phone, message, serviceTitle: mainService, subService, employee, hour, date, status: 'future', userId
-      }).save()
+      await new Appointment({ ...req.body, userId, date }).save()
       await updateEmployeeAppointments(date, hour, employee, mainService)
-      res.status(200).json({message: SuccessMessages.appointmentCreated, userFirstName: firstName})
+      res.status(200)
+         .json({ message: SuccessMessages.appointmentCreated, userFirstName: firstName })
    } catch (err: any) {
       catchError(err, next)
    }

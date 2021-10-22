@@ -5,11 +5,11 @@ import Rewards from '../models/rewards'
 import Appointment from '../models/appointment'
 import User from "../models/user"
 import Controller from "../shared/controllerType"
-import { IAppointment, IPromotion, IReward, IUserRequest } from "../shared/interfaces/userDashboard"
+import { IPromotion, IReward, IUserRequest } from "../shared/interfaces/userDashboard"
 
 
 export const getUserInfo: Controller = async (req: IUserRequest, res: Response, next: NextFunction): Promise<void> => {
-   const userInfo = await User.find({ _id: req.userId }).select('firstName rewardsPoints promotionCode')
+   const userInfo = await User.find({ _id: req.userId }).select('email firstName lastName rewardsPoints promotionCode')
    res.status(200)
       .json({ userInfo })
 }
@@ -27,7 +27,7 @@ export const getRewards: Controller = async (req: Request, res: Response, next: 
 }
 
 export const getAppointments: Controller = async (req: IUserRequest, res: Response, next: NextFunction): Promise<void> => {
-   const appointments: IAppointment[] = await Appointment.find({ userId: req.userId })
+   const appointments = await Appointment.find({ email: req.userEmail })
    res.status(200)
       .json({ appointments })
 }
