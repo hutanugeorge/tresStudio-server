@@ -29,7 +29,7 @@ app.use(authentication)
 app.use(admin)
 
 app.use((err: CustomError, req: Request, res: Response, next: NextFunction)  => {
-  res.status(Number(err.statusCode)).json({message: err.message})
+  res.status(Number(err.statusCode)).json({errors: err.message})
 })
 mongoose.connect(MONGODB_KEY)
   .then(() => app.listen(3001))

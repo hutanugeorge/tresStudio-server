@@ -6,11 +6,13 @@ import { userDashboardRoutes, presentationPageRoutes } from "../utils/constants"
 
 
 const { getPostPromotionsRoute, getPostRewardsRoute, getPostUserInfoRoute } = userDashboardRoutes
+const { getPostAppointmentsRoute } = presentationPageRoutes
+
 const router: Router = Router()
 
 router.get(getPostPromotionsRoute, isAuth, getPromotions)
 router.get(getPostRewardsRoute, isAuth, getRewards)
-router.get(presentationPageRoutes.getPostAppointmentsRoute, isAuth, getAppointments)
+router.get(getPostAppointmentsRoute, isAuth, getAppointments)
 router.get(getPostUserInfoRoute, isAuth, getUserInfo)
 
 

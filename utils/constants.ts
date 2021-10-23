@@ -27,7 +27,8 @@ export enum Errors {
    wrongPassword = 'Wrong password',
    emailExists = 'This email already exists',
    wrongDate = 'Wrong date',
-   employeeDoesntExist = 'Employee doesn\'t exist'
+   employeeDoesntExist = 'Employee doesn\'t exist',
+   passwordDoesntMatch = 'Passwords does not match'
 }
 
 export enum SuccessMessages {
