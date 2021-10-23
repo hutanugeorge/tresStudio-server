@@ -1,5 +1,7 @@
 import dayjs from "dayjs"
 import { NextFunction, Request, Response } from 'express'
+import { validationResult } from 'express-validator'
+import { ValidationError } from "express-validator/src/base"
 
 import Employee from "../models/employee"
 import LandingPage from '../models/landingPage'
@@ -47,6 +49,17 @@ export const getEmployees: Controller = async (req: Request, res: Response, next
 export const postAppointment: Controller = async (req: IUserRequest, res: Response, next: NextFunction): Promise<void> => {
    const { firstName, mainService, employee, hour, day, } = req.body
    try {
+      const errorsObject: { [prop: string]: string}  = {}
+      const errors = validationResult(req)
+
+      errors.array().forEach((error:{param: string, msg: string}) => {
+         errorsObject[`${error.param}`] = error.msg
+      })
+
+      if (!errors.isEmpty()) {
+         res.status(403).json({ errors: errorsObject })
+         return
+      }
       const date = dayjs(new Date().setDate(day)).format('MM/DD/YYYY')
       await checkEmployeeAppointments(date, hour, employee)
       const userId = getUserId(req)

@@ -4,12 +4,12 @@ export enum presentationPageRoutes {
    getPostFeatures = '/features',
    getPostLandingInfo = '/landing',
    getEmployeesRoute = '/employees',
+   getPostAppointmentsRoute = '/appointments',
 }
 
 export enum userDashboardRoutes {
    getPostPromotionsRoute = '/promotions',
    getPostRewardsRoute = '/rewards',
-   getPostAppointmentsRoute = '/appointments',
    getPostUserInfoRoute = '/user',
 }
 
