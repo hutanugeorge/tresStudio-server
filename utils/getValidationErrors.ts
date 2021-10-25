@@ -3,7 +3,9 @@ import { validationResult } from "express-validator"
 import { IValidatorError } from "../shared/interfaces/authentification"
 
 
-const getValidationErrors = (req: Request): IValidatorError => {
+type GetValidationError = (req: Request) => IValidatorError
+
+const getValidationErrors: GetValidationError = (req: Request): IValidatorError => {
    const errorsObject: { [prop: string]: string } = {}
    const errors = validationResult(req)
 

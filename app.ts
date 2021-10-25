@@ -16,7 +16,7 @@ const app: Application = express()
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use((req: Request, res: Response, next: NextFunction): void => {
   res.header('Access-Control-Allow-Origin', [ '*' ])
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
   res.header("Access-Control-Allow-Headers","Authorization")
@@ -28,7 +28,7 @@ app.use(userDashboard)
 app.use(authentication)
 app.use(admin)
 
-app.use((err: CustomError, req: Request, res: Response, next: NextFunction)  => {
+app.use((err: CustomError, req: Request, res: Response, next: NextFunction): void  => {
   res.status(Number(err.statusCode)).json({errors: err.message})
 })
 mongoose.connect(MONGODB_KEY)

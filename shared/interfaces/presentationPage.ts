@@ -1,18 +1,18 @@
 import { Document } from 'mongoose'
 
 export interface IFeature extends Document {
-  image: string
-  title: string
-  description: string
+  readonly image: string
+  readonly title: string
+  readonly description: string
 }
 
 export interface ILandingInfo extends Document {
-  landingPhrase: string
-  landingButtonPhrase: string
+  readonly landingPhrase: string
+  readonly landingButtonPhrase: string
 }
 
 export interface IReview extends Document {
-  image: string
-  fullName: string
-  review: string
+  readonly image: string
+  readonly fullName: string
+  readonly review: string
 }

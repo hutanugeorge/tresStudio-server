@@ -1,3 +1,3 @@
 export interface IValidatorError {
-   [p: string]: string
+   readonly [p: string]: string
 }

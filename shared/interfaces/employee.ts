@@ -2,19 +2,20 @@ import { IAppointment } from "./userDashboard"
 
 
 export interface IEmployee extends Document {
-   firstName: string
-   lastName: string
-   password: string
-   email: string
-   field: string
-   phone: string
-   role: string
-   jobTitle: string
-   unavailability?: IUnavailabilityPeriod[]
-   appointments?: Pick<IAppointment, 'serviceTitle' | 'date' | 'hour'>[]
+   readonly _id: string
+   readonly firstName: string
+   readonly lastName: string
+   readonly password: string
+   readonly email: string
+   readonly field: string
+   readonly phone: string
+   readonly role: string
+   readonly jobTitle: string
+   readonly unavailability?: IUnavailabilityPeriod[]
+   readonly appointments?: Pick<IAppointment, 'serviceTitle' | 'date' | 'hour'>[]
 }
 
 interface IUnavailabilityPeriod {
-   startDate: string
-   endDate: string
+   readonly startDate: string
+   readonly endDate: string
 }

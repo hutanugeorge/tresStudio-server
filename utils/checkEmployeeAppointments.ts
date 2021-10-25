@@ -5,7 +5,10 @@ import { Errors } from "./constants"
 import getCustomError from "./getCustomError"
 
 
-export const checkEmployeeAppointments = async (date: string, hour: string, employeeId: string) => {
+type CheckEmployeeAppointments = (date: string, hour: string, employeeId: string) => Promise<void>
+type UpdateEmployeeAppointments = (date: string, hour: string, employeeId: string, serviceTitle: string) => Promise<void>
+
+export const checkEmployeeAppointments: CheckEmployeeAppointments = async (date: string, hour: string, employeeId: string): Promise<void> => {
    const fetchedEmployee: IEmployee | null = await Employee.findOne({ _id: employeeId })
    if (fetchedEmployee) {
       fetchedEmployee.appointments?.forEach((appointment: IEmployeeAppointment) => {
@@ -17,7 +20,7 @@ export const checkEmployeeAppointments = async (date: string, hour: string, empl
 
 }
 
-export const updateEmployeeAppointments = async (date: string, hour: string, employeeId: string, serviceTitle: string) => {
+export const updateEmployeeAppointments: UpdateEmployeeAppointments = async (date: string, hour: string, employeeId: string, serviceTitle: string): Promise<void> => {
    await Employee.findOneAndUpdate({ _id: employeeId }, {
       "$push": {
          "appointments": { date, hour, serviceTitle }

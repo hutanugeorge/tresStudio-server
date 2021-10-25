@@ -3,7 +3,9 @@ import { JWTKEY } from "../keys"
 import { IUserRequest } from "../shared/interfaces/userDashboard"
 
 
-const getUserId = (req: IUserRequest) => {
+type GetUserId = (req: IUserRequest) => string | undefined | null
+
+const getUserId: GetUserId = (req: IUserRequest): string | undefined | null => {
    const authHeader = req.get('authorization')
    if (authHeader) {
       const token = authHeader.split(' ')[1]

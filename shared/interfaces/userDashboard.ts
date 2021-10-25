@@ -3,35 +3,35 @@ import { Document, Schema } from "mongoose";
 
 
 export interface IPromotion extends Document {
-   title: string
-   saleType: string
-   amount: number
-   description: string
+   readonly title: string
+   readonly saleType: string
+   readonly amount: number
+   readonly description: string
 }
 
 export interface IReward extends Document {
-   title: string
-   services: IRewardService[]
+   readonly title: string
+   readonly services: IRewardService[]
 }
 
 export interface IRewardService extends Document {
-   title: string
-   points: number
+   readonly title: string
+   readonly points: number
 }
 
 export interface IAppointment extends Document {
-   firstName: string
-   lastName: string
-   employeeName: string
-   email: string
-   phone: string
-   message: string
-   serviceTitle: string
-   subService: string
-   employee?: Schema.Types.ObjectId
-   date: string
-   hour: string
-   userId: string
+   readonly firstName: string
+   readonly lastName: string
+   readonly employeeName: string
+   readonly email: string
+   readonly phone: string
+   readonly message: string
+   readonly serviceTitle: string
+   readonly subService: string
+   readonly employee?: Schema.Types.ObjectId
+   readonly date: string
+   readonly hour: string
+   readonly userId: string
 }
 
 export interface IUserRequest extends Request {

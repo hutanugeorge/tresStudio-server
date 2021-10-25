@@ -4,10 +4,7 @@ import { IReward } from "../shared/interfaces/userDashboard";
 
 
 const rewardSchema: Schema = new Schema({
-   title: {
-      type: String,
-      required: true
-   },
+   title: { type: String, required: true },
    services: {
       type: [ {
          title: String,

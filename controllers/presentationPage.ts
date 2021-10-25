@@ -1,13 +1,12 @@
 import dayjs from "dayjs"
 import { NextFunction, Request, Response } from 'express'
-import { validationResult } from 'express-validator'
-import { ValidationError } from "express-validator/src/base"
 
 import Employee from "../models/employee"
 import LandingPage from '../models/landingPage'
 import Feature from '../models/features'
 import Review from '../models/reviews'
 import Appointment from '../models/appointment'
+import { IValidatorError } from "../shared/interfaces/authentification"
 import { IEmployee } from "../shared/interfaces/employee"
 import { IFeature, ILandingInfo, IReview } from '../shared/interfaces/presentationPage'
 import Controller from "../shared/controllerType";
@@ -16,6 +15,7 @@ import catchError from "../utils/catchError"
 import { checkEmployeeAppointments, updateEmployeeAppointments } from "../utils/checkEmployeeAppointments"
 import { SuccessMessages } from "../utils/constants"
 import getUserId from "../utils/getUserId"
+import getValidationErrors from "../utils/getValidationErrors"
 
 
 export const getPhrase: Controller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -49,15 +49,9 @@ export const getEmployees: Controller = async (req: Request, res: Response, next
 export const postAppointment: Controller = async (req: IUserRequest, res: Response, next: NextFunction): Promise<void> => {
    const { firstName, mainService, employee, hour, day, } = req.body
    try {
-      const errorsObject: { [prop: string]: string}  = {}
-      const errors = validationResult(req)
-
-      errors.array().forEach((error:{param: string, msg: string}) => {
-         errorsObject[`${error.param}`] = error.msg
-      })
-
-      if (!errors.isEmpty()) {
-         res.status(403).json({ errors: errorsObject })
+      const errors: IValidatorError = getValidationErrors(req)
+      if (Object.keys(errors).length !== 0) {
+         res.status(403).json({ errors })
          return
       }
       const date = dayjs(new Date().setDate(day)).format('MM/DD/YYYY')
