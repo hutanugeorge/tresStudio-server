@@ -10,7 +10,8 @@ const userSchema = new Schema({
    lastName: { type: String, required: true },
    role: { type: String, required: true },
    rewardsPoints: { type: Number, required: true },
-   promotionCode: { type: String, required: true }
+   promotionCode: { type: String, required: true },
+   passwordUpdatedAt: {type: String, required: false}
 })
 
 export default model<IUser>('User', userSchema)

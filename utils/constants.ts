@@ -19,7 +19,9 @@ export enum adminDashboardRoutes {
 
 export enum login {
    postLogin = '/login',
-   postSignUp = '/signup'
+   postSignUp = '/signup',
+   postResetPasswordEmail = '/resetPasswordEmail',
+   postResetPassword = '/resetPassword'
 }
 
 export enum Errors {
@@ -28,13 +30,17 @@ export enum Errors {
    emailExists = 'This email already exists',
    wrongDate = 'Wrong date',
    employeeDoesntExist = 'Employee doesn\'t exist',
-   passwordDoesntMatch = 'Passwords does not match'
+   passwordDoesntMatch = 'Passwords does not match',
+   error10MinutesPassword = "You have to wait 10 minutes after last password change",
+
 }
 
 export enum SuccessMessages {
    signup = 'User Created',
    fetchEmployees = 'Employees fetched',
-   appointmentCreated = 'your appointment has been created'
+   appointmentCreated = 'your appointment has been created',
+   resetPassword = 'A mail has been send to your email address.',
+   passwordUpdated = "Password updated successfully"
 }
 
 export enum UserRoles {

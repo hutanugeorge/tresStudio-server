@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 
 interface IUserInfo{
-   readonly userId: string
+   readonly userId?: string
    readonly email: string
 }
 type GenerateJWT = (userInfo: IUserInfo, JWTKEY: string, expireTime: string) => string

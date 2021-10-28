@@ -11,6 +11,13 @@ import { IAppointment, IPromotion, IReward, IUserRequest } from "../shared/inter
 export const getUserInfo: Controller = async (req: IUserRequest, res: Response, next: NextFunction): Promise<void> => {
    //TODO type userInfo correctly
    const userInfo = await User.find({ _id: req.userId }).select('email firstName lastName rewardsPoints promotionCode')
+   const appointmentData = await Appointment.aggregate([{
+      $group: {
+         _id: '$date',
+         count: { $sum: 1}
+      }
+   }])
+   console.log(appointmentData)
    res.status(200)
       .json({ userInfo })
 }

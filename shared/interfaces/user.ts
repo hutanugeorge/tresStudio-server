@@ -10,12 +10,5 @@ export interface IUser extends Document {
    readonly role: string
    readonly rewardsPoint: number
    readonly promotionCode: string
-}
-
-export interface IUserInfo extends Document {
-   readonly _id: string
-   readonly firstName: string
-   readonly lastName: string
-   readonly rewardsPoint: number
-   readonly promotionCode: string
+   passwordUpdatedAt: string
 }

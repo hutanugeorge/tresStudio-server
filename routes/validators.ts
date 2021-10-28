@@ -43,3 +43,18 @@ export const postSignUpValidator = [
       .isLength({ min: 8 })
       .isString()
 ]
+
+export const postResetPasswordValidator = [
+   check('password', 'Password must be at least 8 characters long')
+      .isLength({ min: 8 })
+      .isString(),
+   check('repeatPassword', 'Password must be at least 8 characters long')
+      .isLength({ min: 8 })
+      .isString(),
+]
+
+export const postResetPasswordMailValidator = [
+   check('email', 'Enter a valid email address')
+      .normalizeEmail()
+      .isEmail()
+]
