@@ -11,11 +11,7 @@ export interface IEmployee extends Document {
    readonly phone: string
    readonly role: string
    readonly jobTitle: string
-   readonly unavailability?: IUnavailabilityPeriod[]
+   readonly unavailability?: String[]
    readonly appointments?: Pick<IAppointment, 'serviceTitle' | 'date' | 'hour'>[]
 }
 
-interface IUnavailabilityPeriod {
-   readonly startDate: string
-   readonly endDate: string
-}

@@ -14,7 +14,8 @@ export enum userDashboardRoutes {
 }
 
 export enum adminDashboardRoutes {
-   postEmployee = '/adminDashboard/employee'
+   postEmployee = '/adminDashboard/employee',
+   getEmployees = '/adminDashboard/employees'
 }
 
 export enum login {

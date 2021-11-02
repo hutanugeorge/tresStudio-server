@@ -27,3 +27,4 @@ export const updateEmployeeAppointments: UpdateEmployeeAppointments = async (dat
       }
    })
 }
+

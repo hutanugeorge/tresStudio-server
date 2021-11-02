@@ -19,10 +19,7 @@ const employeeSchema = new Schema({
       required: false
    },
    unavailability: {
-      type: [ {
-         startDate: { type: String, required: true },
-         endDate: { type: String, required: true }
-      } ],
+      type: [ { type: String, required: true } ],
       required: false
    }
 })

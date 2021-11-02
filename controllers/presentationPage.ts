@@ -19,21 +19,33 @@ import getValidationErrors from "../utils/getValidationErrors"
 
 
 export const getPhrase: Controller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-   const landingInfo: ILandingInfo[] = await LandingPage.find()
-   res.status(200)
-      .json({ landingInfo: landingInfo[0] })
+   try {
+      const landingInfo: ILandingInfo[] = await LandingPage.find()
+      res.status(200)
+         .json({ landingInfo: landingInfo[0] })
+   } catch (err: any) {
+      catchError(err, next)
+   }
 }
 
 export const getFeatures: Controller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-   const features: IFeature[] = await Feature.find()
-   res.status(200)
-      .json({ features })
+   try {
+      const features: IFeature[] = await Feature.find()
+      res.status(200)
+         .json({ features })
+   } catch (err: any) {
+      catchError(err, next)
+   }
 }
 
 export const getReviews: Controller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-   const reviews: IReview[] = await Review.find()
-   res.status(200)
-      .json({ reviews })
+   try {
+      const reviews: IReview[] = await Review.find()
+      res.status(200)
+         .json({ reviews })
+   } catch (err: any) {
+      catchError(err, next)
+   }
 }
 
 export const getEmployees: Controller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
